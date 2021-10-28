@@ -102,7 +102,7 @@ public:
     int get_mutex_lock() const;
 
     /**
-     * aet mutex_lock state for the thread
+     * set mutex_lock state for the thread
      */
     void set_mutex_lock(int m);
 
