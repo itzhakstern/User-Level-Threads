@@ -4,7 +4,7 @@ the file uthread.cpp responsible for management and scheduling the threads.
 
 # Algorithm
 
-In thus project I used in the Round-Robin scheduling policy should work as follows:
+In order to manage the threads in this library, I implement a Round-Robin (RR) scheduling algorithm that work as follows:
 
 - Every time a thread is moved to RUNNING state, it is allocated a predefined number of microseconds to run. This time interval is called a quantum.
 - A thread is preempted if any of the following occurs:
