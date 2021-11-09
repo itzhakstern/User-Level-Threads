@@ -2,6 +2,8 @@ The project provides functions for the user to manage thrades as well as Mutex.
 the files Threads.h and Threads.cpp are the file of the class threads.
 the file uthread.cpp responsible for management and scheduling the threads.
 
+# Algorithm
+
 In thus project I used in the Round-Robin scheduling policy should work as follows:
 
 - Every time a thread is moved to RUNNING state, it is allocated a predefined number of microseconds to run. This time interval is called a quantum.
@@ -32,6 +34,8 @@ In thus project I used in the Round-Robin scheduling policy should work as follo
     state from BLOCK to READY and will try to acquire the mutex again next time it will be RUNNING.
     
 - for example:
+
+    <img width="569" alt="צילום מסך 2021-11-09 ב-14 11 01" src="https://user-images.githubusercontent.com/83215154/140922121-355ae436-3ede-48c6-a932-c7e5273cf679.png">
 
     
 # Thread State Diagram
