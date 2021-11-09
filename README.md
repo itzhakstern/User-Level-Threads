@@ -31,5 +31,5 @@ In thus project I used in the Round-Robin scheduling policy should work as follo
     the mutex can release it. After the mutex is released, one of the waiting threads will change its
     state from BLOCK to READY and will try to acquire the mutex again next time it will be RUNNING.
 
-<img width="766" alt="צילום מסך 2021-11-09 ב-13 50 21" src="https://user-images.githubusercontent.com/83215154/140919365-b6aa2de7-c33f-476c-8215-dd79086a0ec5.png">
+     <img width="766" alt="צילום מסך 2021-11-09 ב-13 50 21" src="https://user-images.githubusercontent.com/83215154/140919365-b6aa2de7-c33f-476c-8215-dd79086a0ec5.png">
     
