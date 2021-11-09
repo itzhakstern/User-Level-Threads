@@ -40,5 +40,9 @@ In thus project I used in the Round-Robin scheduling policy should work as follo
     
 # Thread State Diagram
 
+At any given time during the running of the user's program, each of the threads in the program is in one of
+the states shown in the following state diagram. Transitions from state to state occur as a result of calling
+one of the library functions, or from elapsing of time,
+
  <img width="766" alt="צילום מסך 2021-11-09 ב-13 50 21" src="https://user-images.githubusercontent.com/83215154/140919365-b6aa2de7-c33f-476c-8215-dd79086a0ec5.png">
     
