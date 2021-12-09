@@ -100,12 +100,12 @@ int uthread_spawn(void (*f)(void)){
  * If a thread terminates itself or the main thread is terminated, the function does not return.
  */
 int uthread_terminate(int tid){
+    sigprocmask(SIG_SETMASK, &set, nullptr);
     auto i = map_treads.find(tid);
     if(i == map_treads.end()){
         cerr << LIBRARY_ERROR_MESSAGE << "the tread with tid not found\n";
         return ERROR;
     }
-    sigprocmask(SIG_SETMASK, &set, nullptr);
     num_treads--;
     if(mutex_uthreads.state == LOCK && mutex_uthreads.id == i->second->get_id()){
         mutex_uthreads.state = UNLOCK;
