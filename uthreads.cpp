@@ -139,12 +139,12 @@ int uthread_terminate(int tid){
  * Return value: On success, return 0. On failure, return -1.
  */
 int uthread_block(int tid){
+    sigprocmask(SIG_SETMASK, &set, nullptr);
     auto i = map_treads.find(tid);
     if(tid == 0 || i == map_treads.end()){
         cerr << LIBRARY_ERROR_MESSAGE << "can not block tread 0 || the tread with tid not found\n";
         return ERROR;
     }
-    sigprocmask(SIG_SETMASK, &set, nullptr);
     if(run_ID == tid){ // we want to block the running tread
         i->second->set_state(BLOCK);
         schedule(tid);
@@ -164,12 +164,12 @@ int uthread_block(int tid){
  * Return value: On success, return 0. On failure, return -1.
  */
 int uthread_resume(int tid){
+    sigprocmask(SIG_SETMASK, &set, nullptr);
     auto i = map_treads.find(tid);
     if(i == map_treads.end()){
         cerr << LIBRARY_ERROR_MESSAGE << "the tread with tid not found\n";
         return ERROR;
     }
-    sigprocmask(SIG_SETMASK, &set, nullptr);
     if(i->second->get_state() == BLOCK){
         if(i->second->get_mutex_lock() == UNLOCK){
             ready_list.push_back(tid);
@@ -188,11 +188,11 @@ int uthread_resume(int tid){
  * Return value: On success, return 0. On failure, return -1.
  */
 int uthread_mutex_lock(){
+    sigprocmask(SIG_SETMASK, &set, nullptr);
     if(mutex_uthreads.state == LOCK && mutex_uthreads.id == run_ID){
         cerr << LIBRARY_ERROR_MESSAGE << "can not lock the mutex twice\n";
         return ERROR;
     }
-    sigprocmask(SIG_SETMASK, &set, nullptr);
     if(mutex_uthreads.state == UNLOCK){
         mutex_uthreads.state = LOCK;
         mutex_uthreads.id = run_ID;
@@ -216,11 +216,11 @@ int uthread_mutex_lock(){
  * Return value: On success, return 0. On failure, return -1.
  */
 int uthread_mutex_unlock(){
+    sigprocmask(SIG_SETMASK, &set, nullptr);
     if(mutex_uthreads.state == UNLOCK || (mutex_uthreads.state == LOCK && mutex_uthreads.id != run_ID)){
         cerr << LIBRARY_ERROR_MESSAGE << "can not release the mutex twice\n";
         return ERROR;
     }
-    sigprocmask(SIG_SETMASK, &set, nullptr);
     mutex_uthreads.state = UNLOCK;
     mutex_uthreads.id = -1;
     rm_mutex();
